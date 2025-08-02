@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "city": "Jaipur",
+    "name": "Hawa Mahal",
+    "description": "Historic pink palace.",
+    "image": "hawa-mahal.jpg"
+  },
+  {
+    "id": 2,
+    "city": "Goa",
+    "name": "Baga Beach",
+    "description": "Popular beach with water sports.",
+    "image": "baga-beach.jpg"
+  }
+]

@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "city": "Manali",
+    "title": "Snowy Adventure",
+    "duration": "4 Days",
+    "price": 12999,
+    "description": "Experience snow, adventure, and fun!"
+  },
+  {
+    "id": 2,
+    "city": "Goa",
+    "title": "Beach Bonanza",
+    "duration": "3 Days",
+    "price": 9999,
+    "description": "Relax and party in sunny Goa!"
+  }
+]
