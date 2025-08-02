@@ -58,5 +58,28 @@ AttractionController.deleteAttraction = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+// Get attractions by city (using query param)
+AttractionController.getAttractionsByCity = async (req, res) => {
+  try {
+    const { city } = req.query;
+
+    if (!city) {
+      return res.status(400).json({ error: "City query parameter is required" });
+    }
+
+    const attractions = await Attraction.find({
+      city: { $regex: new RegExp(`^${city}$`, "i") }, // case-insensitive exact match
+    });
+
+    if (attractions.length === 0) {
+      return res.status(404).json({ message: `No attractions found for city: ${city}` });
+    }
+
+    res.status(200).json(attractions);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 
 export default AttractionController;

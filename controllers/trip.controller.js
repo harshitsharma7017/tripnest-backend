@@ -24,9 +24,9 @@ TripController.getTrips = async (req, res) => {
     let trips;
 
     if (city) {
-      trips = await TripPackage.find({ city }).populate("city");
+      trips = await TripPackage.find({ city: city });
     } else {
-      trips = await TripPackage.find().populate("city");
+      trips = await TripPackage.find();
     }
 
     res.status(200).json(trips);
@@ -34,6 +34,7 @@ TripController.getTrips = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
 
 // Get trip by ID
 TripController.getTripById = async (req, res) => {

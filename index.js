@@ -9,6 +9,11 @@ import cityRoutes from "./routes/city.routes.js";
 import hotelRoutes from "./routes/hotel.routes.js";
 import tripRoutes from "./routes/trip.routes.js";
 import attractionRoutes from "./routes/attraction.routes.js";
+import busRoutes from "./routes/bus.routes.js";
+import trainRoutes from "./routes/train.routes.js";
+import flightRoutes from "./routes/flight.routes.js";
+import cabRoutes from "./routes/cab.routes.js";
+import transportRoutes from "./routes/transport.routes.js";
 
 dotenv.config();
 
@@ -17,7 +22,7 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors({
-  origin: 'http://localhost:5173', // Your frontend Vite URL             // if using cookies/sessions
+  origin: 'http://localhost:5173',
 }));
 app.use(express.json());
 
@@ -27,6 +32,11 @@ app.use("/api/cities", cityRoutes);
 app.use("/api/hotels", hotelRoutes);
 app.use("/api/trips", tripRoutes);
 app.use("/api/attractions", attractionRoutes);
+app.use("/api/bus", busRoutes);
+app.use("/api/flight", flightRoutes);
+app.use("/api/train", trainRoutes);
+app.use("/api/cab", cabRoutes);
+app.use("/api/transport", transportRoutes);
 
 // Start server
 connectToDb().then(() => {
