@@ -22,7 +22,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
-const allowedOrigins = ['http://localhost:5173', 'https://tripnest-frontend2.vercel.app/'];
+const allowedOrigins = ['http://localhost:5173', 'https://tripnest-frontend2.vercel.app'];
 
 app.use(cors({
   origin: function (origin, callback) {
@@ -33,7 +33,6 @@ app.use(cors({
       return callback(new Error('Not allowed by CORS'));
     }
   },
-  credentials: true,
 }));
 app.use(express.json());
 
