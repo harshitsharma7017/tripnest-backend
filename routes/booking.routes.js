@@ -1,21 +1,22 @@
 import express from "express";
 import BookingController from "../controllers/booking.controller.js";
+import { protect } from "../middleware/authMiddleware.js";
 
 const bookingRoutes = express.Router();
 
 // Create booking
-bookingRoutes.post("/", BookingController.createBooking);
+bookingRoutes.post("/",protect, BookingController.createBooking);
 
 // Get all bookings
-bookingRoutes.get("/", BookingController.getAllBookings);
+bookingRoutes.get("/", protect, BookingController.getAllBookings);
 
 // Get booking by ID
-bookingRoutes.get("/:id", BookingController.getBookingById);
+bookingRoutes.get("/:id", protect, BookingController.getBookingById);
 
 // Update booking
-bookingRoutes.put("/:id", BookingController.updateBooking);
+bookingRoutes.put("/:id", protect, BookingController.updateBooking);
 
 // Delete booking
-bookingRoutes.delete("/:id", BookingController.deleteBooking);
+bookingRoutes.delete("/:id", protect, BookingController.deleteBooking);
 
 export default bookingRoutes;
