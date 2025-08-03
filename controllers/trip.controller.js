@@ -24,7 +24,9 @@ TripController.getTrips = async (req, res) => {
     let trips;
 
     if (city) {
-      trips = await TripPackage.find({ city: city });
+      trips = await TripPackage.find({
+        city: { $regex: new RegExp(`^${city}$`, "i") }, // Case-insensitive exact match
+      });
     } else {
       trips = await TripPackage.find();
     }
