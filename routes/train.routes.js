@@ -9,6 +9,8 @@ trainRoutes.post("/", TrainController.createTrain);
 // Get all trains
 trainRoutes.get("/", TrainController.getAllTrains);
 
+trainRoutes.get("/search", TrainController.searchTrains);
+
 // Get a train by ID
 trainRoutes.get("/:id", TrainController.getTrainById);
 

@@ -14,6 +14,7 @@ import trainRoutes from "./routes/train.routes.js";
 import flightRoutes from "./routes/flight.routes.js";
 import cabRoutes from "./routes/cab.routes.js";
 import transportRoutes from "./routes/transport.routes.js";
+import chatbotRoutes from "./routes/chatbot.routes.js";
 
 dotenv.config();
 
@@ -37,6 +38,7 @@ app.use("/api/flight", flightRoutes);
 app.use("/api/train", trainRoutes);
 app.use("/api/cab", cabRoutes);
 app.use("/api/transport", transportRoutes);
+app.use("/api/chatbot", chatbotRoutes);
 
 // Start server
 connectToDb().then(() => {

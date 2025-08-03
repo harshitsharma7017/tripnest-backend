@@ -58,4 +58,29 @@ BusController.deleteBus = async (req, res) => {
   }
 };
 
+BusController.searchBuses = async (req, res) => {
+  try {
+    const { from, to, date } = req.query;
+
+    if (!from || !to || !date) {
+      return res.status(400).json({ error: "Missing from, to, or date query params" });
+    }
+
+    const startTime = new Date(date);
+    const endTime = new Date(date);
+    endTime.setDate(endTime.getDate() + 1);
+
+    const buses = await Bus.find({
+      sourceCity: { $regex: new RegExp(from, "i") },
+      destinationCity: { $regex: new RegExp(to, "i") },
+      departureTime: { $gte: startTime, $lt: endTime },
+    });
+
+    res.status(200).json(buses);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+
 export default BusController;

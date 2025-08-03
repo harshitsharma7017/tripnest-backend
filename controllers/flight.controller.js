@@ -61,23 +61,26 @@ FlightController.deleteFlight = async (req, res) => {
 // Get flights by source, destination, and optional departure time range
 FlightController.searchFlights = async (req, res) => {
   try {
-    const { from, to, startTime, endTime } = req.query;
+    const { from, to, startTime} = req.query;
 
     if (!from || !to) {
-      return res.status(400).json({ error: "Both 'from' and 'to' query parameters are required." });
+      return res.status(400).json({ error: "Required query params: from, to, startTime, and endTime (as dates in YYYY-MM-DD format)" });
     }
 
     const query = {
-      sourceAirport: from,
-      destinationAirport: to,
+      sourceAirport: new RegExp(`^${from}`, "i"),
+      destinationAirport: new RegExp(`^${to}`, "i"),
     };
 
-    if (startTime && endTime) {
-      query.departureTime = {
-        $gte: new Date(startTime),
-        $lte: new Date(endTime),
-      };
-    }
+    // // Convert startTime and endTime to date range (ignoring time part)
+    // const startDate = new Date(startTime); // e.g., 2025-08-02
+    // const endDate = new Date(endTime);
+    // endDate.setDate(endDate.getDate() + 1); // include entire end date
+
+    // query.departureTime = {
+    //   $gte: startDate,
+    //   $lt: endDate,
+    // };
 
     const flights = await Flight.find(query);
     res.status(200).json(flights);

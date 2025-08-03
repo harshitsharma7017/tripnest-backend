@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import Hotel from "../models/Hotel.js";
 import City from "../models/City.js";
 
@@ -20,14 +21,15 @@ HotelController.createHotel = async (req, res) => {
 // Get all hotels or filter by cityId
 HotelController.getHotels = async (req, res) => {
   try {
-    const { city } = req.query;
+    const { cityId } = req.query;
 
-    let hotels;
-    if (city) {
-      hotels = await Hotel.find({ city }).populate("city");
-    } else {
-      hotels = await Hotel.find().populate("city");
+    if (cityId && !mongoose.Types.ObjectId.isValid(cityId)) {
+      return res.status(400).json({ error: "Invalid cityId" });
     }
+
+    const filter = cityId ? { city: cityId } : {};
+
+    const hotels = await Hotel.find(filter).populate("city");
 
     res.status(200).json(hotels);
   } catch (error) {

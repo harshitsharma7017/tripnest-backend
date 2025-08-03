@@ -9,6 +9,8 @@ busRoutes.post("/", BusController.createBus);
 // Get all buses
 busRoutes.get("/", BusController.getAllBuses);
 
+busRoutes.get("/search", BusController.searchBuses);
+
 // Get a bus by ID
 busRoutes.get("/:id", BusController.getBusById);
 

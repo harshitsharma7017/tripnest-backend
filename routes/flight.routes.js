@@ -8,6 +8,7 @@ flightRoutes.post("/", FlightController.createFlight);
 
 // Get all flights
 flightRoutes.get("/", FlightController.getAllFlights);
+flightRoutes.get("/search", FlightController.searchFlights);
 
 // Get a flight by ID
 flightRoutes.get("/:id", FlightController.getFlightById);
@@ -18,6 +19,5 @@ flightRoutes.put("/:id", FlightController.updateFlight);
 // Delete a flight
 flightRoutes.delete("/:id", FlightController.deleteFlight);
 
-router.get("/search", FlightController.searchFlights);
 
 export default flightRoutes;
